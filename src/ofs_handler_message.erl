@@ -119,7 +119,7 @@ handle_info(_Info, State) ->
 terminate(Reason, #?STATE{auxid = AuxId,
                           callback_state = CallbackState,
                           callback_mod = Module}) ->
-    ?WARNING("[~p] terminate reason(~p)", [?MODULE, Reason]),
+    ?INFO("[~p] terminate reason(~p)", [?MODULE, Reason]),
     case AuxId of
         main ->
             do_callback(Module, terminate, [CallbackState]);
