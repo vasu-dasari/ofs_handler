@@ -236,7 +236,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(Reason, #?STATE{datapath_id = DatapathId}) ->
-    ?WARNING("[~p] terminate datapathId(~p) reason(~p)",
+    ?INFO("[~p] terminate datapathId(~p) reason(~p)",
                                             [?MODULE, DatapathId, Reason]),
     unregister_handler(DatapathId),
     ok.
