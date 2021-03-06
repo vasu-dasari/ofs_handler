@@ -290,8 +290,12 @@ send(Msg, State) ->
 
 sync_send(Msg, State) ->
     Conn = State#?STATE.main_connection,
-    of_driver:sync_send(Conn, Msg).
-
+    try
+        of_driver:sync_send(Conn, Msg)
+    catch
+        Exception:Reason:_StackTrace ->
+            {error,{Exception, Reason}}
+    end.
 send_list(Msgs, State) ->
     Conn = State#?STATE.main_connection,
     of_driver:send_list(Conn, Msgs).
